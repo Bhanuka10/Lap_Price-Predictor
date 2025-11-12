@@ -3,9 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Laptop Price Predictor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 1px;
+        }
+
+        .form-container {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        input[type="submit"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            letter-spacing: 0.5px;
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        input[type="submit"]:active {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            input[type="text"],
+            select {
+                padding: 10px 14px;
+            }
+        }
+    </style>
+    
 </head>
 <body>
-    <h1>Hello World hi</h1></h1>
+    <div class="container">
+        <div class="header">
+            <h1>💻 Laptop Price Predictor</h1>
+        </div>
+        <div class="form-container">
+            <form action="/" method="POST">
+                <div class="form-group">
+                    <label for="Ram">RAM (GB)</label>
+                    <input type="text" id="Ram" name="Ram" placeholder="e.g., 8" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Weight">Weight (kg)</label>
+                    <input type="text" id="Weight" name="Weight" placeholder="e.g., 1.5" required>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="Touchscreen" name="Touchscreen">
+                    <label for="Touchscreen">Touchscreen</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="IPS" name="IPS">
+                    <label for="IPS">IPS Display</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="Companey">Company</label>
+                    <select name="Companey" id="Companey" required>
+                        <option value="" hidden>Select Company</option>
+                        <option value="Acer">Acer</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Asus">Asus</option>
+                        <option value="Dell">Dell</option>
+                        <option value="HP">HP</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="MSI">MSI</option>
+                        <option value="Toshiba">Toshiba</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="TypeName">Type</label>
+                    <select name="TypeName" id="TypeName" required>
+                        <option value="" hidden>Select Type</option>
+                        <option value="2 in 1 Convertible">2 in 1 Convertible</option>
+                        <option value="Gaming">Gaming</option>
+                        <option value="Notebook">Notebook</option>
+                        <option value="Netbook">Netbook</option>
+                        <option value="Ultrabook">Ultrabook</option>
+                        <option value="Workstation">Workstation</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="OperatingSystem">Operating System</label>
+                    <select name="OperatingSystem" id="OperatingSystem" required>
+                        <option value="" hidden>Select OS</option>
+                        <option value="Windows">Windows</option>
+                        <option value="MacOS">MacOS</option>
+                        <option value="Linux">Linux</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cpu">CPU</label>
+                    <select name="cpu" id="cpu" required>
+                        <option value="" hidden>Select CPU</option>
+                        <option value="intel core i7">Intel Core i7</option>
+                        <option value="intel core i5">Intel Core i5</option>
+                        <option value="intel core i3">Intel Core i3</option>
+                        <option value="other intel processor">Other Intel Processor</option>
+                        <option value="amd processor">AMD Processor</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="gpu">GPU</label>
+                    <select name="gpu" id="gpu" required>
+                        <option value="" hidden>Select GPU</option>
+                        <option value="amd">AMD</option>
+                        <option value="intel">Intel</option>
+                        <option value="nvidia">Nvidia</option>
+                    </select>
+                </div>
+                
+                <input type="submit" value="🔮 Predict Price">
+            </form>
+        </div>
+    </div>
+    
+
 </body>
 </html>
